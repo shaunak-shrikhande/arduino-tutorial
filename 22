@@ -1,0 +1,26 @@
+// C++ code
+//
+int num;
+String msg="enter number";
+void setup()
+{
+  pinMode(8, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  Serial.println(msg);
+  while(Serial.available()==0)
+  {
+  }
+  num=Serial.parseInt();
+  if(num>10)
+  {
+    digitalWrite(8, HIGH);
+  delay(3000); // Wait for 1000 millisecond(s)
+  digitalWrite(8, LOW);
+  delay(1000); // Wait for 1000 millisecond(s)
+  }
+  delay(1000);
+}
