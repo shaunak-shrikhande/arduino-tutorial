@@ -1,0 +1,24 @@
+// C++ code
+//en is enabler and conotrols speed
+//in 1 & in2 is direction
+// out and out 2 connects to the motor
+
+int speedPin=5, dir1=4, dir2=3;
+int mspeed=100;
+
+void setup()
+{
+  pinMode(speedPin, OUTPUT);
+  pinMode(dir1, OUTPUT);
+  pinMode(dir2, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(dir1, HIGH);
+  digitalWrite(dir2, LOW);
+  analogWrite(speedPin, 255);
+  delay(100);
+  analogWrite(speedPin, mspeed);
+  delay(5000);
+}
