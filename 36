@@ -1,0 +1,32 @@
+// C++ code
+int tiltPin = 2;
+int gPin = 5;  // Define your Green LED pin
+int rPin = 9;  // Define your Red LED pin
+int tiltVal;
+int dT = 500;
+
+void setup() {
+  pinMode(tiltPin, INPUT);
+  pinMode(gPin, OUTPUT);
+  pinMode(rPin, OUTPUT);
+  
+  // Use internal pull-up for the tilt sensor
+  digitalWrite(tiltPin, HIGH); 
+  
+  Serial.begin(9600);
+}
+
+void loop() {
+  tiltVal = digitalRead(tiltPin);
+  Serial.println(tiltVal);
+  delay(dT);
+
+  if (tiltVal == 1) {
+    digitalWrite(gPin, HIGH);
+    digitalWrite(rPin, LOW);
+  } 
+  else if (tiltVal == 0) {
+    digitalWrite(rPin, HIGH);
+    digitalWrite(gPin, LOW);
+  }
+}
