@@ -1,0 +1,32 @@
+//JOYSTICK
+
+int XPin = A3;
+int YPin = A1;
+int switchPin = 9;
+int XVal, YVal, SVal;
+int dT = 500;
+
+void setup()
+{
+  pinMode(XPin, INPUT);
+  pinMode(YPin, INPUT);
+  pinMode(switchPin, INPUT);
+  Serial.begin(9600);
+  digitalWrite(switchPin, HIGH);
+}
+
+void loop()
+{
+  XVal = analogRead(XPin);
+  YVal = analogRead(YPin);
+  SVal = digitalRead(switchPin);
+  
+  Serial.print("X Value = ");
+  Serial.print(XVal);
+  Serial.print(" Y Value = ");
+  Serial.print(YVal);
+  Serial.print(" Switch state is ");
+  Serial.println(SVal);
+  
+  delay(dT);
+}
