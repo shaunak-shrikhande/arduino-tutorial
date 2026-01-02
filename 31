@@ -1,0 +1,33 @@
+//C++ CODE WITH COMMENTS TO EXPLAIN
+
+#include <Servo.h> // Includes the library needed to control servo motors
+
+Servo myServo;     // Creates a servo object called "myServo"
+
+int servoPin = 9;  // The digital pin connected to the servo signal wire
+int lightVal;      // Variable to store the raw reading from the light sensor
+int lightPin = A4; // The analog pin connected to the light sensor
+int dt = 250;      // Delay time (1/4 of a second) between updates
+int angle;         // Variable to store the calculated servo position
+
+void setup() {
+  Serial.begin(9600);       // Starts serial communication for debugging
+  pinMode(lightPin, INPUT); // Sets the light sensor pin as an input
+  myServo.attach(servoPin); // Tells the Arduino the servo is on pin 9
+}
+
+void loop() {
+  lightVal = analogRead(lightPin); // Reads light (returns 0 to 1023)
+  Serial.println(lightVal);        // Prints the value to the Serial Monitor
+  
+  // Math: Maps the light value to an angle. 
+  // The negative multiplier means: More light = Smaller angle.
+  angle = (-0.205 * lightVal) + 160;
+
+  // "Constraints": Keeps the angle within the servo's physical 0-180 range
+  if (angle < 0) angle = 0;
+  if (angle > 180) angle = 180;
+
+  myServo.write(angle); // Moves the servo to the calculated position
+  delay(dt);            // Waits briefly before the next reading
+}
