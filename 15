@@ -1,0 +1,32 @@
+int YellowLED=9;
+int RedLED=6;
+int ytime=500;
+int rtime=500;
+int yblink=3;
+int rblink=5;
+
+void setup()
+{
+  pinMode(YellowLED, OUTPUT);
+  pinMode(RedLED, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  for(int i=0;i<yblink;i++)
+  {
+  digitalWrite(YellowLED, HIGH);
+  delay(ytime); 
+  digitalWrite(YellowLED, LOW);
+  delay(ytime); 
+  }
+  
+  for(int j=0;j<rblink;j++)
+  {
+  digitalWrite(RedLED, HIGH);
+  delay(rtime); 
+  digitalWrite(RedLED, LOW);
+  delay(rtime);
+  }
+}
