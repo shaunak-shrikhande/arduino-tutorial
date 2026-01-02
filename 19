@@ -1,0 +1,48 @@
+// C++ code
+//
+int red=13;
+int green=12;
+int blue=11;
+String color;
+int dt=5000;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(red, OUTPUT);
+  pinMode(green, OUTPUT);
+  pinMode(blue, OUTPUT);
+}
+
+void loop()
+{
+  Serial.println("Enter Colour: ");//case sensitive
+  
+  while(Serial.available()==0){
+  }
+  
+  color=Serial.readString();
+  
+  if(color=="RED")
+  {
+    digitalWrite(red, HIGH);
+  delay(dt);
+  digitalWrite(red, LOW);
+  
+  }
+    
+   if(color=="GREEN")
+  {
+    digitalWrite(green, HIGH);
+  delay(dt);
+     digitalWrite(green, LOW);
+ 
+  }
+  
+   if(color=="BLUE")
+  {
+    digitalWrite(blue, HIGH);
+  delay(dt); 
+  digitalWrite(blue, LOW);
+  }
+}
