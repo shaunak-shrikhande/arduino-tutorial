@@ -1,1 +1,18 @@
+int readPin=A3;
+int readVal;
+float V2=0;
+int delayTime=500;
 
+void setup(){
+  pinMode(readPin,INPUT);//reading from 0-1023
+  Serial.begin(9600);//for println
+}
+
+void loop(){
+  
+  readVal=analogRead(readPin);
+  V2=(5./1023.)*readVal;//v across second r and gnd
+  Serial.println(V2);
+  delay(delayTime);
+  
+}
