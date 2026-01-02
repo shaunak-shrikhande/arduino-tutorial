@@ -1,1 +1,51 @@
+int ledPin = 7;
+
+int dotTime = 200;
+int dashTime = 600;
+int symbolGap = 200;
+int letterGap = 700;
+
+void dot() 
+{
+  digitalWrite(ledPin, HIGH);
+  delay(dotTime);
+  digitalWrite(ledPin, LOW);
+  delay(symbolGap);
+}
+
+void dash() 
+{
+  digitalWrite(ledPin, HIGH);
+  delay(dashTime);
+  digitalWrite(ledPin, LOW);
+  delay(symbolGap);
+}
+
+void setup() 
+{
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() 
+{
+
+  // S
+  dot();
+  dot();
+  dot();
+  delay(letterGap);
+
+  // O 
+  dash();
+  dash();
+  dash();
+  delay(letterGap);
+
+  // S 
+  dot();
+  dot();
+  dot();
+
+  delay(3000);   // wait 
+}
 
