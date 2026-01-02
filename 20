@@ -1,0 +1,70 @@
+// C++ code
+//
+
+
+//CPOLOURS- R+G=YELLOW, G+B=CYAN, B+R=MAGENTA, B+R+G=WHITE
+
+int r=13;
+int g=11;
+int b=12;
+String color;
+String msg = "Colour???";
+int dt=5000;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(r, OUTPUT);
+  pinMode(g, OUTPUT);
+  pinMode(b, OUTPUT);
+}
+
+void loop()
+  Serial.println(msg);
+  while(Serial.available()==0){
+    
+  }
+  color=Serial.readString();
+  
+  
+   if(color=="red")
+  {
+  digitalWrite(r,HIGH);
+    analogWrite(g,0);
+       analogWrite(b,0);
+  
+  }
+  
+     if(color=="green")
+  {
+    digitalWrite(r,LOW);
+    analogWrite(g,255);
+       analogWrite(b,0);
+  
+  }
+  
+     if(color=="blue")
+  {
+    digitalWrite(r,LOW);
+    analogWrite(g,0);
+       analogWrite(b,255);
+     }
+  
+     if(color=="aqua")
+  {
+    digitalWrite(r,LOW);
+    analogWrite(g,255);
+       analogWrite(b,255);
+       
+  
+  }
+  
+      if(color=="off")
+  {
+    digitalWrite(r,LOW);
+    analogWrite(g,0);
+       analogWrite(b,0);
+       
+  
+  }
+}
