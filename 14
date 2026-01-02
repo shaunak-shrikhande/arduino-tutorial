@@ -1,0 +1,23 @@
+int myVoltPin=A3;
+int potVal;
+float V2;
+int dt=250;
+int redPin=9;
+float LEDVal;
+
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  pinMode(myVoltPin,INPUT);
+  pinMode(redPin,OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+potVal=analogRead(myVoltPin);
+LEDVal=(255./1023.)*potVal;
+analogWrite(redPin,LEDVal);
+Serial.println(LEDVal);
+delay(dt);
+}
