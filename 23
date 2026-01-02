@@ -1,0 +1,28 @@
+// C++ code
+//
+int num;
+int dt1=1;
+int dt2=2;
+void setup()
+{
+  pinMode(8, OUTPUT);
+}
+
+void loop()
+{
+  for(int i=1;i<=100;i++)
+  {
+    digitalWrite(8, HIGH);
+  delay(dt1); // Wait for 1000 millisecond(s)
+  digitalWrite(8, LOW);
+  delay(dt1); // Wait for 1000 millisecond(s)
+  }
+  delay(1000);
+  for(int i=1;i<=100;i++)
+  {
+    digitalWrite(8, HIGH);
+  delay(dt2); // Wait for 1000 millisecond(s)
+  digitalWrite(8, LOW);
+  delay(dt2); // Wait for 1000 millisecond(s)
+  }
+}
