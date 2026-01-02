@@ -1,0 +1,57 @@
+// --- Global Variables ---
+
+
+//GAVE CODE TO GEMINI TO DE BUG & UNDERSTAND
+int buttonPin1 = 12;    // Increase brightness button
+int buttonPin2 = 11;    // Decrease brightness button
+int LEDPin = 3;         // LED connected to a PWM pin
+int buzzPin = 2;        // Piezo buzzer pin (added missing variable)
+int buttonVal1;         // Stores state of button 1
+int buttonVal2;         // Stores state of button 2
+int LEDbright = 0;      // Current brightness level (0-255)
+int dt = 250;           // Delay time for the buzzer beep
+
+void setup() {
+  // Set pin modes
+  pinMode(buttonPin1, INPUT);
+  pinMode(buttonPin2, INPUT);
+  pinMode(LEDPin, OUTPUT);
+  pinMode(buzzPin, OUTPUT);
+  
+  // Initialize Serial Monitor
+  Serial.begin(9600);
+}
+
+void loop() {
+  // 1. Read the state of the buttons
+  buttonVal1 = digitalRead(buttonPin1);
+  buttonVal2 = digitalRead(buttonPin2);
+
+  // 2. Adjust brightness based on button presses (Assuming Active-Low/Pull-up)
+  if (buttonVal1 == 0) {
+    LEDbright = LEDbright + 15;
+  }
+  if (buttonVal2 == 0) {
+    LEDbright = LEDbright - 15;
+  }
+
+  // 3. Constrain LEDbright and trigger buzzer if it goes over the limit
+  if (LEDbright > 255) {
+    LEDbright = 255;            // Cap brightness at max
+    digitalWrite(buzzPin, HIGH); // Turn buzzer ON
+    delay(dt);                  // Wait
+    digitalWrite(buzzPin, LOW);  // Turn buzzer OFF (Added per request)
+    Serial.println("Buzz HIGH - Limit Reached!");
+  }
+
+  if (LEDbright < 0) {
+    LEDbright = 0;              // Cap brightness at min
+  }
+
+  // 4. Apply the brightness to the LED and print status
+  analogWrite(LEDPin, LEDbright); 
+  Serial.print("Current Brightness: ");
+  Serial.println(LEDbright);
+
+  delay(50); // Small delay to make the button control smoother
+}
